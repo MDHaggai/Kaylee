@@ -44,6 +44,8 @@
         .slideshow-container {
             position: relative;
             max-width: 1000px;
+            width: 90%;
+            height: 600px;
             margin: 40px auto;
             border-radius: 15px;
             overflow: hidden;
@@ -52,18 +54,23 @@
         }
 
         .mySlides {
-            display: none;
-            position: relative;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .mySlides.active {
+            opacity: 1;
+            z-index: 2;
         }
 
         .mySlides img {
             width: 100%;
-            height: auto;
-            transition: transform 1s ease;
-        }
-
-        .mySlides:hover img {
-            transform: scale(1.05);
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
         }
 
         .numbertext {
@@ -147,7 +154,7 @@
             transition: background-color 0.6s ease;
         }
 
-        .active, .dot:hover {
+        .active-dot, .dot:hover {
             background-color: #ff69b4;
         }
 
@@ -383,6 +390,7 @@
 
             .slideshow-container {
                 margin: 20px auto;
+                height: 400px;
             }
 
             .text {
@@ -466,7 +474,7 @@
     <div class="slideshow-container">
 
         <!-- Slide 1 -->
-        <div class="mySlides fade">
+        <div class="mySlides fade active">
             <div class="numbertext">1 / 8</div>
             <img src="images/flower1.jpg" alt="Roses">
             <div class="text">Every time I see you, Kaylee, it’s like the world suddenly makes sense.</div>
@@ -529,7 +537,7 @@
 
     <!-- Dots/Indicators -->
     <div class="dots-container">
-        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot active-dot" onclick="currentSlide(1)"></span> 
         <span class="dot" onclick="currentSlide(2)"></span> 
         <span class="dot" onclick="currentSlide(3)"></span> 
         <span class="dot" onclick="currentSlide(4)"></span> 
@@ -579,7 +587,7 @@
     <section class="additional-content">
         <h2>More About Kaylee</h2>
         <p>
-            Kaylee, every moment we have a chat feels like a beautiful dream. Your awesomeness is the melody that brightens my days, and your kindness is the warmth that fills my heart. When ever we are having a deep chat all that goes through my mind is you... thoughts of hugging you?, yes I get those thoughts every single time. You inspire me to be the best version of myself, and I cherish every memory of chats we create together.
+            Kaylee, every moment we have a chat feels like a beautiful dream. Your awesomeness is the melody that brightens my days, and your kindness is the warmth that fills my heart. Whenever we are having a deep chat, all that goes through my mind is you... thoughts of hugging you? Yes, I get those thoughts every single time. You inspire me to be the best version of myself, and I cherish every memory of chats we create together.
         </p>
         <p>
             Your grace and elegance captivate me, and your strength and resilience amaze me. Kaylee, you are a rare gem, shining brightly in a world that sometimes feels dull. I am endlessly grateful for your love and companionship, and I look forward to building a future filled with love, joy, and endless possibilities with you.
@@ -610,32 +618,31 @@
     <script>
         // Slideshow Functionality
         let slideIndex = 1;
-        showSlides(slideIndex);
+        const slides = document.getElementsByClassName("mySlides");
+        const dots = document.getElementsByClassName("dot");
 
-        // Next/previous controls
+        function showSlides(n) {
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active-dot");
+            }
+
+            slides[slideIndex - 1].classList.add("active");
+            dots[slideIndex - 1].classList.add("active-dot");
+        }
+
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
 
-        // Thumbnail controls
         function currentSlide(n) {
             showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
         }
 
         // Auto-slide every 10 seconds
@@ -698,6 +705,11 @@
                 beautyPopup.style.display = "none";
             }
         }
+
+        // Initialize the first slide
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlides(slideIndex);
+        });
     </script>
 </body>
 </html>
