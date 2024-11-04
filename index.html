@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Kaylee</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Flower Stickers (Top Left and Bottom Right) -->
+    <img src="images/flower1.jpg" alt="Flower Sticker" class="flower-sticker top-left">
+    <img src="images/flower8.jpg" alt="Flower Sticker" class="flower-sticker bottom-right">
+
+    <header>
+        <h1>For Kaylee</h1>
+        <p>You are beautiful inside and out</p>
+    </header>
+
+    <div class="slideshow-container">
+
+        <!-- Slide 1 -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 8</div>
+            <img src="images/flower1.jpg" alt="Roses">
+            <div class="text">Every time I see you, Kaylee, it’s like the world suddenly makes sense.</div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 8</div>
+            <img src="images/flower2.jpg" alt="Sunflowers">
+            <div class="text">You’re like a sunset, Kaylee—each time I see you, I'm left speechless.</div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 8</div>
+            <img src="images/flower3.jpg" alt="Cherry Blossoms">
+            <div class="text">I don’t think you realize how effortlessly stunning you are, Kaylee.</div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 8</div>
+            <img src="images/flower4.jpg" alt="Lavender">
+            <div class="text">Your beauty feels like poetry, Kaylee—one look and I’m lost in the verses.</div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 8</div>
+            <img src="images/flower5.jpg" alt="Lilies">
+            <div class="text">I keep running out of ways to describe how beautiful you are, Kaylee, but I’ll never get tired of trying.</div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="mySlides fade">
+            <div class="numbertext">6 / 8</div>
+            <img src="images/flower6.jpg" alt="Orchids">
+            <div class="text">I don’t need the stars when your smile lights up everything, Kaylee.</div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="mySlides fade">
+            <div class="numbertext">7 / 8</div>
+            <img src="images/flower7.jpg" alt="Roses">
+            <div class="text">You make it hard to look anywhere else when you’re around, Kaylee.</div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="mySlides fade">
+            <div class="numbertext">8 / 8</div>
+            <img src="images/flower8.jpg" alt="Peonies">
+            <div class="text">Every moment with you is like a page out of my favorite love story, Kaylee.</div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-chevron-left"></i></a>
+        <a class="next" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    <br>
+
+    <!-- Dots/Indicators -->
+    <div class="dots-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span> 
+        <span class="dot" onclick="currentSlide(6)"></span> 
+        <span class="dot" onclick="currentSlide(7)"></span> 
+        <span class="dot" onclick="currentSlide(8)"></span> 
+    </div>
+
+    <!-- Interactive Quotes Section -->
+    <section class="quotes-section">
+        <h2>Quotes for Kaylee</h2>
+        <div class="icons-container">
+            <button class="quote-button" onclick="showQuote('quote1')" aria-label="Heart Quote">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote2')" aria-label="Flower Quote">
+                <i class="fas fa-seedling"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote3')" aria-label="Star Quote">
+                <i class="fas fa-star"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote4')" aria-label="Sun Quote">
+                <i class="fas fa-sun"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote5')" aria-label="Moon Quote">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote6')" aria-label="Smile Quote">
+                <i class="fas fa-smile"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote7')" aria-label="Book Quote">
+                <i class="fas fa-book"></i>
+            </button>
+            <button class="quote-button" onclick="showQuote('quote8')" aria-label="Story Quote">
+                <i class="fas fa-book-open"></i>
+            </button>
+        </div>
+        <div id="quote-popup" class="quote-popup">
+            <span class="close" onclick="closeQuote()">&times;</span>
+            <div id="quote-content"></div>
+            <img src="images/flower8.jpg" alt="Flowers" class="flower-animation">
+        </div>
+    </section>
+
+    <!-- Additional Romantic Content -->
+    <section class="additional-content">
+        <h2>More About Kaylee</h2>
+        <p>
+            Kaylee, every moment we have a chat feels like a beautiful dream. Your awesomeness is the melody that brightens my days, and your kindness is the warmth that fills my heart. When ever we are having a deep chat all that goes through my mind is you... thoughts of hugging you?, yes I get those thoughts every single time. You inspire me to be the best version of myself, and I cherish every memory of chats we create together.
+        </p>
+        <p>
+            Your grace and elegance captivate me, and your strength and resilience amaze me. Kaylee, you are a rare gem, shining brightly in a world that sometimes feels dull. I am endlessly grateful for your love and companionship, and I look forward to building a future filled with love, joy, and endless possibilities with you.
+        </p>
+    </section>
+
+    <!-- Beauty Test Section -->
+    <section class="beauty-test-section">
+        <h2>Test Your Beauty Level</h2>
+        <form id="beauty-form">
+            <label for="username">Enter your name:</label>
+            <input type="text" id="username" name="username" placeholder="Your Name" required>
+            <button type="button" onclick="testBeauty()">Test Beauty</button>
+        </form>
+    </section>
+
+    <!-- Popup Message for Beauty Test -->
+    <div id="beauty-popup" class="beauty-popup">
+        <span class="close" onclick="closeBeautyPopup()">&times;</span>
+        <div id="beauty-content"></div>
+        <img src="images/flower8.jpg" alt="Flowers" class="flower-animation">
+    </div>
+
+    <footer>
+        <p>Created with love for Kaylee 💖</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
