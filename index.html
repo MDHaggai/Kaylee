@@ -4,11 +4,454 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Kaylee</title>
-    <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts for better typography -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Importing Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap');
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px 20px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            margin: 0;
+            color: #ff69b4;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background-color: #fff;
+        }
+
+        .mySlides {
+            display: none;
+            position: relative;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            transition: transform 1s ease;
+        }
+
+        .mySlides:hover img {
+            transform: scale(1.05);
+        }
+
+        .numbertext {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: #fff;
+            font-size: 18px;
+            padding: 8px 12px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 3px;
+        }
+
+        .text {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            color: #333;
+            font-size: 1.8em;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            font-family: 'Great Vibes', cursive;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 3px;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+            transform: translateY(-50%);
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .dots-container {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #ff69b4;
+        }
+
+        .quotes-section {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .quotes-section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin-bottom: 30px;
+        }
+
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .quote-button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.5em;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 60px;
+            height: 60px;
+        }
+
+        .quote-button i {
+            pointer-events: none; /* Prevent icon from capturing click events */
+        }
+
+        .quote-button:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .quote-popup, .beauty-popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .quote-popup .close, .beauty-popup .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .quote-popup .close:hover,
+        .quote-popup .close:focus,
+        .beauty-popup .close:hover,
+        .beauty-popup .close:focus {
+            color: #ff69b4;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #quote-content, #beauty-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 2em;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .flower-animation {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .additional-content {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .additional-content h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .additional-content p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .beauty-test-section {
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .beauty-test-section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        #beauty-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #beauty-form label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        #beauty-form input {
+            padding: 10px;
+            font-size: 1em;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+        }
+
+        #beauty-form button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #beauty-form button:hover {
+            background-color: #ff1493;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+            color: #555;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Flower Stickers */
+        .flower-sticker {
+            position: absolute;
+            width: 100px;
+            z-index: 10;
+        }
+
+        .flower-sticker.top-left {
+            top: 10px;
+            left: 10px;
+        }
+
+        .flower-sticker.bottom-right {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .slideshow-container {
+                margin: 20px auto;
+            }
+
+            .text {
+                font-size: 1.5em;
+                padding: 15px;
+            }
+
+            .quotes-section h2, .additional-content h2, .beauty-test-section h2 {
+                font-size: 2em;
+            }
+
+            .quote-button {
+                padding: 15px;
+                font-size: 1.2em;
+                width: 50px;
+                height: 50px;
+            }
+
+            #quote-content, #beauty-content {
+                font-size: 1.5em;
+            }
+
+            .flower-animation {
+                width: 80px;
+            }
+
+            .flower-sticker {
+                width: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .text {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            .quotes-section h2, .additional-content h2, .beauty-test-section h2 {
+                font-size: 1.8em;
+            }
+
+            .quote-button {
+                padding: 12px;
+                font-size: 1em;
+                width: 40px;
+                height: 40px;
+            }
+
+            #quote-content, #beauty-content {
+                font-size: 1.2em;
+            }
+
+            .flower-animation {
+                width: 60px;
+            }
+
+            .flower-sticker {
+                width: 60px;
+            }
+
+            #beauty-form input {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Flower Stickers (Top Left and Bottom Right) -->
@@ -164,6 +607,97 @@
         <p>Created with love for Kaylee 💖</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Slideshow Functionality
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+
+        // Auto-slide every 10 seconds
+        setInterval(function() {
+            plusSlides(1);
+        }, 10000);
+
+        // Interactive Quotes Functionality
+        const quotes = {
+            quote1: "Every time I see you, Kaylee, it’s like the world suddenly makes sense.",
+            quote2: "You’re like a sunset, Kaylee—each time I see you, I'm left speechless.",
+            quote3: "I don’t think you realize how effortlessly stunning you are, Kaylee.",
+            quote4: "Your beauty feels like poetry, Kaylee—one look and I’m lost in the verses.",
+            quote5: "I keep running out of ways to describe how beautiful you are, Kaylee, but I’ll never get tired of trying.",
+            quote6: "I don’t need the stars when your smile lights up everything, Kaylee.",
+            quote7: "You make it hard to look anywhere else when you’re around, Kaylee.",
+            quote8: "Every moment with you is like a page out of my favorite love story, Kaylee."
+        };
+
+        function showQuote(quoteId) {
+            const popup = document.getElementById('quote-popup');
+            const quoteContent = document.getElementById('quote-content');
+            quoteContent.textContent = quotes[quoteId];
+            popup.style.display = 'block';
+        }
+
+        function closeQuote() {
+            const popup = document.getElementById('quote-popup');
+            popup.style.display = 'none';
+        }
+
+        // Beauty Test Functionality
+        function testBeauty() {
+            const usernameInput = document.getElementById('username').value.trim();
+            const popup = document.getElementById('beauty-popup');
+            const beautyContent = document.getElementById('beauty-content');
+
+            if (usernameInput.toLowerCase() === "kaylee") {
+                beautyContent.textContent = `Haggai thinks you are the most beautiful girl ever, Kaylee, and he wants you to keep smiling and know that you are worth every penny.`;
+            } else {
+                beautyContent.textContent = `Sorry, this website is not for you.`;
+            }
+
+            popup.style.display = 'block';
+        }
+
+        function closeBeautyPopup() {
+            const popup = document.getElementById('beauty-popup');
+            popup.style.display = 'none';
+        }
+
+        // Close popups when clicking outside the content
+        window.onclick = function(event) {
+            const quotePopup = document.getElementById('quote-popup');
+            const beautyPopup = document.getElementById('beauty-popup');
+            if (event.target == quotePopup) {
+                quotePopup.style.display = "none";
+            }
+            if (event.target == beautyPopup) {
+                beautyPopup.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
